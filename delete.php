@@ -4,8 +4,9 @@ use connect_db.php;
 
 // Define variables and initialize with empty values
 
+$id = "";
 
-if _$SERVER['REQUEST_METHOD']
+if ($_SERVER['REQUEST_METHOD'] == "DELETE")
 {
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 // get the 'id' variable from the URL
@@ -13,13 +14,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
     try {
 
-        $sql = "DELETE FROM activities WHERE taskid = $id";
+        $stmt = $conn->prepare("DELETE FROM activities WHERE taskid = (?)");
+        $stmt->bind_param("i", $id);
 
-        if ($conn->query($sql) === TRUE) {
-            echo "Record deleted successfully";
-        } else {
-            echo "Error deleting record: ";
-        }
+        $stmt->execute();
 
         $conn->close();
 
