@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.7.22)
 # Database: todo
-# Generation Time: 2018-06-25 09:19:47 +0000
+# Generation Time: 2018-06-25 10:17:00 +0000
 # ************************************************************
 
 
@@ -41,7 +41,7 @@ INSERT INTO `tasks` (`taskid`, `task`, `userid`)
 VALUES
 	(1,'sdasadljsad',0),
 	(2,'sdsadsaoifusa',0),
-	(3,'task3',1);
+	(3,'task3',0);
 
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -63,8 +63,9 @@ LOCK TABLES `users` WRITE;
 
 INSERT INTO `users` (`id`, `name`)
 VALUES
-	(0,'sdasd'),
-	(1,'jhkjgjlg');
+	(0,'utk'),
+	(1,'jhkjgjlg'),
+	(2,'utk');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
