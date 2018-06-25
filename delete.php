@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === "DELETE")
         $stmt->execute();
 
         $con->close();
+        echo 'done';
 
     } catch (PDOException $e) {
         echo "There is some problem in connection: " . $e->getMessage();
