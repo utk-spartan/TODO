@@ -4,44 +4,29 @@
    $dbpass = '';
    include 'connect_db.php';
 
-
-   /*$stmt = $mysqli->prepare("SELECT id FROM users WHERE name = ?");
-   $stmt->bind_param("s", $_POST['name']);
+   /*$username = 'utk';
+   $stmt = $con->prepare("SELECT id FROM users WHERE name = ?");
+   $stmt->bind_param("s", $username);
    $stmt->execute();
    $result = $stmt->get_result();
    if($result->num_rows === 0) exit('No such user');
    while($row = $result->fetch_assoc()) {
      $id = $row['id'];
    }
-   $stmt->close();
+   $stmt->close();*/
 
-   */
-   //$username = $_POST['name'];
-   $username = 'utk';
-   $sql = "SELECT id
-      FROM users WHERE name = '$username'";
-      //echo $sql;
-   $result = $con->query($sql);
-   if ($result->num_rows > 0) {
-       $row = $result->fetch_assoc();
-       $id = $row["id"];
-    }
-    else {
-      echo "User doesn't exist";
-    }
-
-   $sql = "SELECT task
-      FROM tasks WHERE userid = '$id'";
-      //echo $sql;
-   $result = $con->query($sql);  
+   //$stmt = $con->prepare("SELECT task FROM tasks WHERE userid = ?");
+   $stmt = $con->prepare("SELECT task FROM tasks");
+   //$stmt->bind_param("i", $id);
+   $stmt->execute();
+   $result = $stmt->get_result();
    if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        echo "activity: " . $row["task"]. "<br>";
+        echo "Task: " . $row["task"]. "<br>";
     }
    } else {
-       echo "0 tasks";
+       echo "No tasks";
    }
-
-
+   $stmt->close();   
    $con->close();
 ?>
