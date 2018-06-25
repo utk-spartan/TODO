@@ -4,20 +4,29 @@
    $dbpass = '';
    include 'connect_db.php';
 
-   /*$username = 'utk';
-   $stmt = $con->prepare("SELECT id FROM users WHERE name = ?");
-   $stmt->bind_param("s", $username);
-   $stmt->execute();
-   $result = $stmt->get_result();
-   if($result->num_rows === 0) exit('No such user');
-   while($row = $result->fetch_assoc()) {
-     $id = $row['id'];
+   $username = $_POST['name'];
+   //echo $username;
+   $id = NULL;
+   if ($username != NULL){
+      $stmt = $con->prepare("SELECT id FROM users WHERE name = ?");
+      $stmt->bind_param("s", $username);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      if($result->num_rows === 0) exit('No such user');
+      while($row = $result->fetch_assoc()) {
+        $id = $row['id'];
+      }
+      $stmt->close();
    }
-   $stmt->close();*/
 
-   //$stmt = $con->prepare("SELECT task FROM tasks WHERE userid = ?");
-   $stmt = $con->prepare("SELECT task FROM tasks");
-   //$stmt->bind_param("i", $id);
+   if($id === NULL) {
+      $stmt = $con->prepare("SELECT task FROM tasks");
+   }
+   else {
+      $stmt = $con->prepare("SELECT task FROM tasks WHERE userid = ?");
+      $stmt->bind_param("i", $id);
+   }
+   
    $stmt->execute();
    $result = $stmt->get_result();
    if ($result->num_rows > 0) {
