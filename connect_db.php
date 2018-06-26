@@ -1,5 +1,5 @@
 <?php
-$con = mysqli_connect("192.168.1.185","root","","todo","3306");
+$con = mysqli_connect("localhost","root","","todo","3306");
 
 // Check connection
 if (mysqli_connect_errno())
